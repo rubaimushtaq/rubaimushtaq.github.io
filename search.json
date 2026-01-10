@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Currently in my first year at Ashoka University, I am planning to major in Biology with a minor in Mathematics. Fascinated by the cellular and molecular mechanisms that control the human body and mind, I hope to pursue a future in medical research. I also plan to explore Computer Science and History during my time as an undergraduate.\nSimultaneously, I plan to foster a change in the STEM high school culture in India, shifting the focus from isolated teaching, memorization and entrance exam preparation, to the use of the scientific method in class, critical thinking and interdisciplinary learning."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Rubai Mushtaq",
@@ -7,10 +14,38 @@
     "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "resume.html",
+    "href": "resume.html",
+    "title": "Resume",
     "section": "",
-    "text": "About this site"
+    "text": "Download PDF Resume"
+  },
+  {
+    "objectID": "resume.html#education",
+    "href": "resume.html#education",
+    "title": "Resume",
+    "section": "Education",
+    "text": "Education\nAshoka University | August 2024 - May 2028 Major: Biology | Minor: Mathematics\nDriveChange Learning & Resource Centre (DLRC) | May 2022 - March 2024 Cambridge International AS and A Levels * Mathematics: A  Physics: A  Chemistry: A  Biology: A*\nVidya Valley School | June 2012 - May 2022 ICSE Grade 10: 98.2%"
+  },
+  {
+    "objectID": "resume.html#experience",
+    "href": "resume.html#experience",
+    "title": "Resume",
+    "section": "Experience",
+    "text": "Experience\n\nInternships\nNIUS Project | IISER Pune | June 2025 - August 2025 * Working under Dr. Kundan Sengupta at the Chromosome Biology Lab (CBL).\nData Entry | ElixirAI | April 2024 - June 2024 * Digitized paper-based surgery reports from Jehangir Hospital. * Collaborated with the team to verify data accuracy and resolve discrepancies.\nTeaching Assistant | DLRC | August 2022 - March 2024 * Tutored juniors in Math and Chemistry. * Conducted practical sessions and designed tests for 11th graders.\nLab Assistant | Symbiosis Centre For Waste Resource Management | April 2023 * Isolated and cultured bacterial colonies from leachate samples. * Gained experience in microbiology research and lab techniques.\n\n\nClubs and Activities\nThe Biology Society at Ashoka University | August 2024 - Present * Contributed to the BioSoc Stall at “Run For A Cause”. * Organizing flagship events: ASP AMA and the Bio Mixer.\nStudent Government | Vidya Valley School | June 2021 - May 2022 * Served as Head Girl and led the Student Council."
+  },
+  {
+    "objectID": "resume.html#portfolio-camps",
+    "href": "resume.html#portfolio-camps",
+    "title": "Resume",
+    "section": "Portfolio & Camps",
+    "text": "Portfolio & Camps\nNIUS Biology Camp | Homi Bhabha Centre for Science Education, TIFR | November 2024 * Conducted experiments and explored inquiries through literature reviews.\nOnline Course: The Addicted Brain | Coursera (Emory University) | 2023 * Developed interest in biochemistry, neurosciences, and pharmacology."
+  },
+  {
+    "objectID": "resume.html#awards",
+    "href": "resume.html#awards",
+    "title": "Resume",
+    "section": "Awards",
+    "text": "Awards\n\nWg Cdr Suhas Clement Solomon Award for Extraordinary Achievement | 2019\nNational Silver Medal, Taekwondo | 2019\nBlack Belt, Taekwondo | 2019"
   }
 ]
