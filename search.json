@@ -7,13 +7,6 @@
     "text": "Currently in my first year at Ashoka University, I am planning to major in Biology with a minor in Mathematics. Fascinated by the cellular and molecular mechanisms that control the human body and mind, I hope to pursue a future in medical research. I also plan to explore Computer Science and History during my time as an undergraduate.\nSimultaneously, I plan to foster a change in the STEM high school culture in India, shifting the focus from isolated teaching, memorization and entrance exam preparation, to the use of the scientific method in class, critical thinking and interdisciplinary learning."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Rubai Mushtaq",
-    "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
-  },
-  {
     "objectID": "resume.html",
     "href": "resume.html",
     "title": "Resume",
@@ -47,5 +40,19 @@
     "title": "Resume",
     "section": "Awards",
     "text": "Awards\n\nWg Cdr Suhas Clement Solomon Award for Extraordinary Achievement | 2019\nNational Silver Medal, Taekwondo | 2019\nBlack Belt, Taekwondo | 2019"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Rubai Mushtaq",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
+    "objectID": "todo.html",
+    "href": "todo.html",
+    "title": "Rubai Mushtaq",
+    "section": "",
+    "text": "Learning moment!\nAdd picture\nDynamic PDF"
   }
 ]
