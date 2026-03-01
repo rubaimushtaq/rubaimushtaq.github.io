@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Lab 3: Forward Genetics – Rubai Mushtaq</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-afa37c5c79185640b9c231024f4fe5ea.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Rubai Mushtaq</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../pages/about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../pages/resume.html"> 
+<span class="menu-text">Resume</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-projects" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Projects</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-projects">    
+        <li>
+    <a class="dropdown-item" href="../../projects/forward-genetic/report.html">
+ <span class="dropdown-text">Lab 3: Forward Genetics</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#central-aim" id="toc-central-aim" class="nav-link" data-scroll-target="#central-aim">Central Aim</a></li>
+  <li><a href="#materials" id="toc-materials" class="nav-link" data-scroll-target="#materials">Materials</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
+  <ul class="collapse">
+  <li><a href="#uv-induced-mutagenesis" id="toc-uv-induced-mutagenesis" class="nav-link" data-scroll-target="#uv-induced-mutagenesis">UV Induced Mutagenesis</a></li>
+  <li><a href="#replica-plating-and-screening-for-temperature-sensitive-mutants" id="toc-replica-plating-and-screening-for-temperature-sensitive-mutants" class="nav-link" data-scroll-target="#replica-plating-and-screening-for-temperature-sensitive-mutants">Replica Plating and Screening for Temperature Sensitive Mutants</a></li>
+  <li><a href="#quantitative-growth-assay-and-stock-preparation" id="toc-quantitative-growth-assay-and-stock-preparation" class="nav-link" data-scroll-target="#quantitative-growth-assay-and-stock-preparation">Quantitative Growth Assay and Stock Preparation</a></li>
+  <li><a href="#qualitative-growth-assay-and-motility-assay" id="toc-qualitative-growth-assay-and-motility-assay" class="nav-link" data-scroll-target="#qualitative-growth-assay-and-motility-assay">Qualitative Growth Assay and Motility Assay</a></li>
+  </ul></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
+  <ul class="collapse">
+  <li><a href="#week-1" id="toc-week-1" class="nav-link" data-scroll-target="#week-1">Week 1</a>
+  <ul class="collapse">
+  <li><a href="#batch-2" id="toc-batch-2" class="nav-link" data-scroll-target="#batch-2">Batch 2</a></li>
+  <li><a href="#batch-4" id="toc-batch-4" class="nav-link" data-scroll-target="#batch-4">Batch 4</a></li>
+  <li><a href="#numerical-data-and-visualization-combined-across-all-batches-e.-coli" id="toc-numerical-data-and-visualization-combined-across-all-batches-e.-coli" class="nav-link" data-scroll-target="#numerical-data-and-visualization-combined-across-all-batches-e.-coli">Numerical Data and Visualization — Combined across all batches (<em>E. coli</em>)</a></li>
+  <li><a href="#numerical-data-and-visualization-combined-across-all-batches-pa14" id="toc-numerical-data-and-visualization-combined-across-all-batches-pa14" class="nav-link" data-scroll-target="#numerical-data-and-visualization-combined-across-all-batches-pa14">Numerical Data and Visualization — Combined across all batches (<em>PA14</em>)</a></li>
+  </ul></li>
+  <li><a href="#week-2" id="toc-week-2" class="nav-link" data-scroll-target="#week-2">Week 2</a></li>
+  <li><a href="#week-3" id="toc-week-3" class="nav-link" data-scroll-target="#week-3">Week 3</a>
+  <ul class="collapse">
+  <li><a href="#summary-tables" id="toc-summary-tables" class="nav-link" data-scroll-target="#summary-tables">Summary Tables</a></li>
+  <li><a href="#comparative-growth-curves" id="toc-comparative-growth-curves" class="nav-link" data-scroll-target="#comparative-growth-curves">Comparative Growth Curves</a></li>
+  </ul></li>
+  <li><a href="#week-4" id="toc-week-4" class="nav-link" data-scroll-target="#week-4">Week 4</a></li>
+  </ul></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a>
+  <ul class="collapse">
+  <li><a href="#colony-count-vs-exposure-time" id="toc-colony-count-vs-exposure-time" class="nav-link" data-scroll-target="#colony-count-vs-exposure-time">Colony Count vs Exposure Time</a></li>
+  <li><a href="#replica-plating" id="toc-replica-plating" class="nav-link" data-scroll-target="#replica-plating">Replica Plating</a></li>
+  <li><a href="#graph-wise-analysis-of-growth-assay-results" id="toc-graph-wise-analysis-of-growth-assay-results" class="nav-link" data-scroll-target="#graph-wise-analysis-of-growth-assay-results">Graph-wise Analysis of Growth Assay Results</a>
+  <ul class="collapse">
+  <li><a href="#wt1-comparison" id="toc-wt1-comparison" class="nav-link" data-scroll-target="#wt1-comparison">WT1 Comparison</a></li>
+  <li><a href="#wt2-comparison" id="toc-wt2-comparison" class="nav-link" data-scroll-target="#wt2-comparison">WT2 Comparison</a></li>
+  <li><a href="#wt3-comparison" id="toc-wt3-comparison" class="nav-link" data-scroll-target="#wt3-comparison">WT3 Comparison</a></li>
+  <li><a href="#wt4-comparison" id="toc-wt4-comparison" class="nav-link" data-scroll-target="#wt4-comparison">WT4 Comparison</a></li>
+  </ul></li>
+  <li><a href="#qualitative-growth-assay" id="toc-qualitative-growth-assay" class="nav-link" data-scroll-target="#qualitative-growth-assay">Qualitative Growth Assay</a></li>
+  <li><a href="#motility-assay-1" id="toc-motility-assay-1" class="nav-link" data-scroll-target="#motility-assay-1">Motility Assay</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 3: Forward Genetics</h1>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Rubai Mushtaq </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Cell Biology and Genetics Lab
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Forward genetics is a technique used to identify the genes that code for a particular phenotype. In this method, random mutations are generated in an organism, and then individuals with the desired phenotype are screened for and then selected. These individuals are then used to identify the genes that are responsible for the phenotype. In this study, we employed <em>Escherichia coli</em> (strain OP50) and <em>Pseudomonas aeruginosa</em> (strain <em>PA14</em>) to screen for temperature-sensitive mutants generated through UV-induced mutagenesis.</p>
+</section>
+<section id="central-aim" class="level1">
+<h1>Central Aim</h1>
+<p>The main objective of this four week long experiment was to carry out a forward genetics experiment, and identify the visible changes in the phenotype. We used two different species of bacteria, <em>Escherichia coli</em> (OP50) and <em>Pseudomonas aeruginosa</em> (<em>PA14</em>). We performed UV mutagenesis on both species, and identified the temperature sensitive mutants. On these temperature sensitive mutants, we performed qualitative as well as quantitative growth assays at 30°C and 37°C, and also assessed the motility of the bacterial mutants and wild-types.</p>
+</section>
+<section id="materials" class="level1">
+<h1>Materials</h1>
+<ol type="1">
+<li>LB - Amp agar plates.</li>
+<li>Overnight growth culture of <em>E. coli</em> and the <em>PA14</em> strain.</li>
+<li>Sterilized LB media.</li>
+<li>Ampicillin solution.</li>
+<li>P200 Pipette and tips.</li>
+<li>1.5 mL microcentrifuge tubes, autoclaved.</li>
+<li>Sterile plate spreaders.</li>
+<li>Permanent markers.</li>
+<li>70% ethanol for sterilizing the work surface.</li>
+<li>Gloves</li>
+<li>Waste disposal bag.</li>
+<li>Laminar Hood with a UV radiation timer.</li>
+<li>Replica plating mount.</li>
+<li>Autoclaved velvet cloth (already cut into small sizes).</li>
+<li>Tissue rolls.</li>
+<li>LB-Amp liquid media.</li>
+<li>Overnight grown mutants and controls.</li>
+<li>96-well plates.</li>
+<li>Soft agar plates with Ampicillin (0.3% agar)</li>
+<li>24-well plates</li>
+</ol>
+</section>
+<section id="methods" class="level1">
+<h1>Methods</h1>
+<section id="uv-induced-mutagenesis" class="level2">
+<h2 class="anchored" data-anchor-id="uv-induced-mutagenesis">UV Induced Mutagenesis</h2>
+<p>We began by sterilizing the work surface with 70% ethanol, and left the UV light on for 10 minutes, after which we added the preprepared plates, overnight bacterial cultures, sterile LB media, pipettes, tips, microcentrifuge tubes, markers and sterile plate spreaders to the laminar hood. (All further steps take place inside the laminar hood) Using serial dilution, we diluted the overnight bacterial cultures in a <span class="math inline">\(10^{-7}\)</span> ratio using sterile LB media. To make 500 μL of <span class="math inline">\(10^{-7}\)</span> dilution, we added 50 μL of the overnight bacterial culture to 450 μL of sterile LB media, and repeated this process 7 times, taking 50 μL of the previous dilution and adding it to 450 μL of sterile LB media. We then labelled all the plates with the species name, date, batch, group number, exposure time and initials. Using a P200 pipette, we added 50 μL of the <span class="math inline">\(10^{-7}\)</span> dilution to each of the 8 plates (4 plates for <em>E. coli</em> and 4 plates for the <em>PA14</em> strain). We spread the bacteria evenly over the surface of the agar using a sterile plate spreader, until we felt some friction from the plate. We then placed the plates in the UV radiation chamber and exposed them to UV radiation for the predetermined time. We removed the plates from the UV radiation chamber, covered them with aluminium foil to prevent photorepair and incubated them at 37°C for 14 – 16 hours. The plates were photographed, and the number of colonies on each plate was counted. To analyze the data, we plotted the number of colonies against the UV exposure time for each species, and calculated the survival percentage for each species, at each exposure time.</p>
+<section id="preparation-of-lb-ampicillin-plates-for-the-following-week" class="level4">
+<h4 class="anchored" data-anchor-id="preparation-of-lb-ampicillin-plates-for-the-following-week">Preparation of LB-Ampicillin plates for the following week</h4>
+<p>To prepare the LB-Ampicillin plates for the following week, the plates were unpackaged inside the hood and their lids were opened. We added 50 μg/mL of Ampicillin to the molten, autoclaved LB media, then poured the media into the plates, filling them to approximately 90% capacity. Once the plates had set, they were closed and stored upside-down at room temperature.</p>
+</section>
+</section>
+<section id="replica-plating-and-screening-for-temperature-sensitive-mutants" class="level2">
+<h2 class="anchored" data-anchor-id="replica-plating-and-screening-for-temperature-sensitive-mutants">Replica Plating and Screening for Temperature Sensitive Mutants</h2>
+<p>We began by sterilizing the hood with 20 minutes of UV light exposure before work. We then added LB-Amp agar plates, a replica mount, velvet cloths, the overnight grown master plates from the previous week’s experiment, ethanol, markers, and waste bags to the hood. Each plate was labelled with the date, section, group, bacteria, replica ID, and incubation temperature. With the help of a marker, the plates were divided into four quadrants, and an orientation mark was made on the metal ring of the replication mount.</p>
+<p>The velvet cloth was placed over the ring and pulled tight. We gently pressed the master plate onto the velvet cloth to ensure even distribution of bacteria, then placed it back in its original position. The replica plates were then placed on the replication mount, ensuring the orientation marks aligned. These plates were gently pressed onto the velvet cloth as well. After completion, all plates were wrapped in aluminium foil and incubated at 37°C for 2 hours. Subsequently, half of the replica plates were incubated at 30°C and the other half at 37°C for 14 - 16 hours. We took clear photographs of the plates and stored them at 4°C. Finally, we identified and marked the temperature-sensitive colonies (those present at 37°C but absent at 30°C) as M1, M2, M3, and so on, starting from Quadrant I and proceeding anti-clockwise.</p>
+</section>
+<section id="quantitative-growth-assay-and-stock-preparation" class="level2">
+<h2 class="anchored" data-anchor-id="quantitative-growth-assay-and-stock-preparation">Quantitative Growth Assay and Stock Preparation</h2>
+<section id="growth-assay" class="level4">
+<h4 class="anchored" data-anchor-id="growth-assay">Growth assay</h4>
+<p>For the quantitative growth assay, we prepared a 96-well plate map with three replicates for each mutant and wild type. A 1% solution of each overnight culture was prepared by taking 495 μL of LB-Amp media and 5 μL of the respective vortexed culture in a microcentrifuge tube. The mixture was thoroughly mixed and vortexed. We then pipetted 100 μL of this mixture into the designated wells of the 96-well plate. The plate was placed in the reader, where required time points were set, and incubated at both 30°C and 37°C for 14 - 16 hours. Data was collected from the reader and the plates were stored at 4°C.</p>
+</section>
+<section id="preparation-of-glycerol-stocks" class="level4">
+<h4 class="anchored" data-anchor-id="preparation-of-glycerol-stocks">Preparation of Glycerol stocks</h4>
+<p>To preserve the cultures, glycerol stocks were prepared by mixing 25 μL of the overnight-grown culture (mutants and controls) with 25 μL of 50% autoclaved glycerol solution in a labeled microcentrifuge tube. The tubes were mixed thoroughly by moving them up and down continuously before being placed in a cryobox for long-term storage at -80°C.</p>
+</section>
+</section>
+<section id="qualitative-growth-assay-and-motility-assay" class="level2">
+<h2 class="anchored" data-anchor-id="qualitative-growth-assay-and-motility-assay">Qualitative Growth Assay and Motility Assay</h2>
+<section id="growth-assay-1" class="level4">
+<h4 class="anchored" data-anchor-id="growth-assay-1">Growth assay</h4>
+<p>The 24-well plates were labelled with mutant IDs, concentrations, dates, and group names. We prepared a serial dilution range (<span class="math inline">\(10^{-3}\)</span> to <span class="math inline">\(10^{-7}\)</span>) for each mutant and wild type in sterilized LB medium. Using a pipette, 5 μL of each diluted culture was gently dispensed into the center of the wells in the 24-well agar plates, taking care not to pierce the agar or splash the droplets. Two plates were prepared—one for incubation at 30°C and the other at 37°C. Both were covered in aluminium foil and incubated for 16–18 hours. Finally, we photographed the plates to compare colony densities across the dilutions.</p>
+</section>
+<section id="motility-assay" class="level4">
+<h4 class="anchored" data-anchor-id="motility-assay">Motility assay</h4>
+<p>For the motility assay, soft agar plates (0.3% agar) were labelled and divided into halves, with three guide circles marked in each half for replicates. We prepared a <span class="math inline">\(10^{-6}\)</span> dilution of the mutants and wild types, then inoculated the center of each circle with 2 μL of the culture. The plates were stacked and incubated upright at 37°C for approximately 10–13 hours. After incubation, clear images were taken, and the diameters of the motility halos were measured in millimetres using a ruler. The mean halo diameters were then compared between the mutants and the wild-type controls.</p>
+</section>
+</section>
+</section>
+<section id="results" class="level1">
+<h1>Results</h1>
+<section id="week-1" class="level2">
+<h2 class="anchored" data-anchor-id="week-1">Week 1</h2>
+<p>To calculate the survival percentage, the following formula was used:</p>
+<p><span class="math display">\[\text{Survival Percentage} = \left(\frac{\text{Number of Colonies}}{\text{Number of Colonies at 0 seconds}}\right) \times 100\]</span></p>
+<section id="batch-2" class="level3">
+<h3 class="anchored" data-anchor-id="batch-2">Batch 2</h3>
+<div id="fig-uv-0sec" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-uv-0sec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/week1_0sec.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-uv-0sec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: <em>E. coli</em> and <em>PA14</em> at 0 seconds UV exposure
+</figcaption>
+</figure>
+</div>
+<div id="fig-uv-2sec" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-uv-2sec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/week1_2sec.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-uv-2sec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: <em>E. coli</em> and <em>PA14</em> at 2 seconds UV exposure
+</figcaption>
+</figure>
+</div>
+<div id="fig-uv-5sec" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-uv-5sec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/week1_5sec.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-uv-5sec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: <em>E. coli</em> and <em>PA14</em> at 5 seconds UV exposure
+</figcaption>
+</figure>
+</div>
+<div id="fig-uv-10sec" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-uv-10sec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/week1_10sec.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-uv-10sec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: <em>E. coli</em> and <em>PA14</em> at 10 seconds UV exposure
+</figcaption>
+</figure>
+</div>
+<section id="numerical-data-and-visualization-batch-2" class="level4">
+<h4 class="anchored" data-anchor-id="numerical-data-and-visualization-batch-2">Numerical Data and Visualization — Batch 2</h4>
+<div id="tbl-batch2-counts" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-batch2-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Colony counts for Batch 2 across different UV exposure times.
+</figcaption>
+<div aria-describedby="tbl-batch2-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 29%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Exposure Time (s)</th>
+<th style="text-align: right;">Value 1</th>
+<th style="text-align: right;">Value 2</th>
+<th style="text-align: right;">Average colony number</th>
+<th style="text-align: right;">Survival (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">10.00</td>
+<td style="text-align: right;">12.00</td>
+<td style="text-align: right;">11.00</td>
+<td style="text-align: right;">100.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2.00</td>
+<td style="text-align: right;">36.00</td>
+<td style="text-align: right;">34.00</td>
+<td style="text-align: right;">35.00</td>
+<td style="text-align: right;">318.18</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5.00</td>
+<td style="text-align: right;">66.00</td>
+<td style="text-align: right;">69.00</td>
+<td style="text-align: right;">67.50</td>
+<td style="text-align: right;">613.64</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10.00</td>
+<td style="text-align: right;">47.00</td>
+<td style="text-align: right;">43.00</td>
+<td style="text-align: right;">45.00</td>
+<td style="text-align: right;">409.09</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div id="fig-batch2-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-batch2-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="artifacts/charts/colony_batch2.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-batch2-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Colony growth vs UV exposure for Batch 2.
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="batch-4" class="level3">
+<h3 class="anchored" data-anchor-id="batch-4">Batch 4</h3>
+<div id="fig-batch4-0sec" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-batch4-0sec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/batch4_plate4.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-batch4-0sec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: <em>E. coli</em> and <em>PA14</em> at 0 seconds UV exposure
+</figcaption>
+</figure>
+</div>
+<div id="fig-batch4-2sec" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-batch4-2sec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/batch4_plate3.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-batch4-2sec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: <em>E. coli</em> and <em>PA14</em> at 2 seconds UV exposure
+</figcaption>
+</figure>
+</div>
+<div id="fig-batch4-5sec" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-batch4-5sec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/batch4_plate1.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-batch4-5sec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: <em>E. coli</em> and <em>PA14</em> at 5 seconds UV exposure
+</figcaption>
+</figure>
+</div>
+<div id="fig-batch4-10sec" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-batch4-10sec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/batch4_plate2.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-batch4-10sec-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: <em>E. coli</em> and <em>PA14</em> at 10 seconds UV exposure
+</figcaption>
+</figure>
+</div>
+<section id="numerical-data-and-visualization-batch-4" class="level4">
+<h4 class="anchored" data-anchor-id="numerical-data-and-visualization-batch-4">Numerical Data and Visualization — Batch 4</h4>
+<div id="tbl-batch4-counts" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-batch4-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Colony counts for Batch 4 across different UV exposure times.
+</figcaption>
+<div aria-describedby="tbl-batch4-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 29%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Exposure Time (s)</th>
+<th style="text-align: right;">Value A</th>
+<th style="text-align: right;">Value B</th>
+<th style="text-align: right;">Average colony number</th>
+<th style="text-align: right;">Survival (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">316.00</td>
+<td style="text-align: right;">264.00</td>
+<td style="text-align: right;">290.00</td>
+<td style="text-align: right;">100.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2.00</td>
+<td style="text-align: right;">196.00</td>
+<td style="text-align: right;">197.50</td>
+<td style="text-align: right;">196.75</td>
+<td style="text-align: right;">67.84</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5.00</td>
+<td style="text-align: right;">216.00</td>
+<td style="text-align: right;">168.00</td>
+<td style="text-align: right;">192.00</td>
+<td style="text-align: right;">66.21</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10.00</td>
+<td style="text-align: right;">108.00</td>
+<td style="text-align: right;">140.00</td>
+<td style="text-align: right;">124.00</td>
+<td style="text-align: right;">42.76</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div id="fig-batch4-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-batch4-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="artifacts/charts/colony_batch4.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-batch4-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: Colony growth vs UV exposure for Batch 4 <em>PA14</em>.
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="numerical-data-and-visualization-combined-across-all-batches-e.-coli" class="level3">
+<h3 class="anchored" data-anchor-id="numerical-data-and-visualization-combined-across-all-batches-e.-coli">Numerical Data and Visualization — Combined across all batches (<em>E. coli</em>)</h3>
+<div id="tbl-batch1-ec-counts" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-batch1-ec-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: Colony counts across Batches for <em>E. coli</em>.
+</figcaption>
+<div aria-describedby="tbl-batch1-ec-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Exposure Time (s)</th>
+<th style="text-align: right;">Average colony number</th>
+<th style="text-align: right;">Survival (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">6.67</td>
+<td style="text-align: right;">100.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2.00</td>
+<td style="text-align: right;">23.17</td>
+<td style="text-align: right;">347.38</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5.00</td>
+<td style="text-align: right;">49.78</td>
+<td style="text-align: right;">746.33</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10.00</td>
+<td style="text-align: right;">32.67</td>
+<td style="text-align: right;">489.81</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div id="fig-batch1-ec-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-batch1-ec-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="artifacts/charts/colony_ec_combined.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-batch1-ec-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11: Colony growth vs UV exposure across batches (<em>E. coli</em>).
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="numerical-data-and-visualization-combined-across-all-batches-pa14" class="level3">
+<h3 class="anchored" data-anchor-id="numerical-data-and-visualization-combined-across-all-batches-pa14">Numerical Data and Visualization — Combined across all batches (<em>PA14</em>)</h3>
+<div id="tbl-batch1-pa-counts" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-batch1-pa-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4: Colony counts across batches for <em>PA14</em>.
+</figcaption>
+<div aria-describedby="tbl-batch1-pa-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Exposure Time (s)</th>
+<th style="text-align: right;">Average colony number</th>
+<th style="text-align: right;">Survival (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">212.50</td>
+<td style="text-align: right;">100.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2.00</td>
+<td style="text-align: right;">187.00</td>
+<td style="text-align: right;">88.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5.00</td>
+<td style="text-align: right;">226.50</td>
+<td style="text-align: right;">106.59</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10.00</td>
+<td style="text-align: right;">157.00</td>
+<td style="text-align: right;">73.88</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div id="fig-batch1-pa-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-batch1-pa-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="artifacts/charts/colony_pa_combined.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-batch1-pa-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12: Colony growth vs UV exposure across batches (<em>PA14</em>).
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="week-2" class="level2">
+<h2 class="anchored" data-anchor-id="week-2">Week 2</h2>
+<p>The temperature-sensitive mutants identified in Week 1 were further analyzed. The following images show the replicas for master plates 1, 3, and 7.</p>
+<div id="fig-mas1-replicas" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mas1-replicas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/replicasMP1.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mas1-replicas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13: Master Plate 1 and Replicas
+</figcaption>
+</figure>
+</div>
+<div id="fig-mas3-replicas" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mas3-replicas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/replicasMP3.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mas3-replicas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14: Master Plate 3 and Replicas
+</figcaption>
+</figure>
+</div>
+<div id="fig-mas7-replicas" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mas7-replicas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/replicasMP7.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mas7-replicas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15: Master Plate 7 and Replicas
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="week-3" class="level2">
+<h2 class="anchored" data-anchor-id="week-3">Week 3</h2>
+<p>A quantitative analysis of the growth of <em>E. coli</em> wild types and mutants was performed, at two different temperatures (30°C and 37°C).</p>
+<p>The growth assay data was processed. The standard deviation (<span class="math inline">\(s\)</span>) for each strain was calculated using the raw replicate values to provide error bars for the growth curves:</p>
+<p><span class="math display">\[s = \sqrt{\frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n - 1}}\]</span></p>
+<p>where <span class="math inline">\(x_i\)</span> represents the value of each replicate, <span class="math inline">\(\bar{x}\)</span> is the mean of the replicates, and <span class="math inline">\(n\)</span> is the number of replicates.</p>
+<section id="summary-tables" class="level3">
+<h3 class="anchored" data-anchor-id="summary-tables">Summary Tables</h3>
+<div id="tbl-week3-summary-37" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-week3-summary-37-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5: Summary of OD600 values and standard deviations for WT and Mutants at 37°C (at 350 minutes).
+</figcaption>
+<div aria-describedby="tbl-week3-summary-37-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Strain</th>
+<th>Mean OD600</th>
+<th>Std Dev</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div id="tbl-week3-summary-30" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-week3-summary-30-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6: Summary of OD600 values and standard deviations for WT and Mutants at 30°C (at 350 minutes).
+</figcaption>
+<div aria-describedby="tbl-week3-summary-30-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Strain</th>
+<th>Mean OD600</th>
+<th>Std Dev</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="comparative-growth-curves" class="level3">
+<h3 class="anchored" data-anchor-id="comparative-growth-curves">Comparative Growth Curves</h3>
+<div id="fig-wt1-37" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-wt1-37-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="artifacts/charts/growth_wt1_37.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wt1-37-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16: WT 1 vs Mutants (37°C).
+</figcaption>
+</figure>
+</div>
+<div id="fig-wt1-30" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-wt1-30-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="artifacts/charts/growth_wt1_30.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wt1-30-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17: WT 1 vs Mutants (30°C).
+</figcaption>
+</figure>
+</div>
+<div id="fig-wt2-37" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-wt2-37-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="artifacts/charts/growth_wt2_37.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wt2-37-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;18: WT 2 vs Mutants (37°C).
+</figcaption>
+</figure>
+</div>
+<div id="fig-wt2-30" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-wt2-30-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="artifacts/charts/growth_wt2_30.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wt2-30-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;19: WT 2 vs Mutants (30°C).
+</figcaption>
+</figure>
+</div>
+<div id="fig-wt3-37" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-wt3-37-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="artifacts/charts/growth_wt3_37.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wt3-37-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20: WT 3 vs Mutants (37°C).
+</figcaption>
+</figure>
+</div>
+<div id="fig-wt3-30" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-wt3-30-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="artifacts/charts/growth_wt3_30.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wt3-30-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;21: WT 3 vs Mutants (30°C).
+</figcaption>
+</figure>
+</div>
+<div id="fig-wt4-37" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-wt4-37-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="artifacts/charts/growth_wt4_37.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wt4-37-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;22: WT 4 vs Mutants (37°C).
+</figcaption>
+</figure>
+</div>
+<div id="fig-wt4-30" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-wt4-30-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="artifacts/charts/growth_wt4_30.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-wt4-30-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;23: WT 4 vs Mutants (30°C).
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="week-4" class="level2">
+<h2 class="anchored" data-anchor-id="week-4">Week 4</h2>
+<p>A qualitative analysis of the growth of <em>E. coli</em> wild types and mutants was performed, at two different temperatures (30°C and 37°C). We also performed a motility assay on the wild types and mutants of <em>E. coli</em>, using <em>PA14</em> as a control.</p>
+<div id="fig-growth-30" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-growth-30-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/Growth_assay_30.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-growth-30-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;24: Qualitative growth assay of <em>E. coli</em> wild types and mutants at 30°C
+</figcaption>
+</figure>
+</div>
+<div id="fig-growth-37" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-growth-37-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/Growth_assay_37.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-growth-37-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;25: Qualitative growth assay of <em>E. coli</em> wild types and mutants at 37°C
+</figcaption>
+</figure>
+</div>
+<div id="fig-motility-m4" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-motility-m4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/Mutants4_PAECWT.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-motility-m4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;26: Motility assay for <em>E. coli</em> Mutant 4, <em>PA14</em>, and <em>E. coli</em> WT
+</figcaption>
+</figure>
+</div>
+<div id="fig-motility-m5-6" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-motility-m5-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/Mutants_5_6_Ecoli.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-motility-m5-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;27: Motility assay for <em>E. coli</em> Mutants 5 and 6
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="discussion" class="level1">
+<h1>Discussion</h1>
+<section id="colony-count-vs-exposure-time" class="level2">
+<h2 class="anchored" data-anchor-id="colony-count-vs-exposure-time">Colony Count vs Exposure Time</h2>
+<p>Ideally, with greater UV exposure, there should have been fewer colonies on the plates. However, this was not the case in our batch’s <em>E. coli</em> colonies. Instead, we got a positive correlation between UV exposure and colony counts. This was probably due to dilution errors made before plating, incorrect spreading of the dilutions, or uneven exposure to UV due to uneven plastic in the plate lids.</p>
+<p>With our <em>PA14</em> culture, since <em>Pseudomonas aeruginosa</em> tends to form biofilms, we did were unable to quantify anything, since the bacteria had spread all over the plate instead of forming homogenous colonies. For this reason, we used the data obtained by Batch 4. For <em>PA14</em>, we got the expected result: a decrease in colony number with an increase in UV exposure.</p>
+<p>These results stayed consistent when we plotted the colony count vs exposure time cumulatively for the entire batch.</p>
+</section>
+<section id="replica-plating" class="level2">
+<h2 class="anchored" data-anchor-id="replica-plating">Replica Plating</h2>
+<p>In the second week, we conducted a replica plating experiment to identify temperature sensitive mutants. We used three master plates that had UV exposed mutants from the previous week’s experiment and made two plates - one to be incubated at 30°C and the other at 37°C.</p>
+<p>From master plate 1, our group got around 5 colonies that grew at 37°C but not at 30°C (<em>PA14</em>, 5s UV exposure). From master plate 3, we got around 2 colonies that grew at 37°C but not at 30°C (<em>E. coli</em>, 10s UV exposure). From master plate 7, we got no colonies in either replica (looks like <em>E. coli</em> from the morphology, unlabelled plate, probably made by the GAs).</p>
+<p>To conduct the quantitative growth assay in the third week, the GAs identified 12 mutants from the replica plating experiment, and chose 4 wild types to compare against. Our group was assigned wild type 2 (WT2) and mutants 4, 5, and 6 (M4, M5, M6).</p>
+</section>
+<section id="graph-wise-analysis-of-growth-assay-results" class="level2">
+<h2 class="anchored" data-anchor-id="graph-wise-analysis-of-growth-assay-results">Graph-wise Analysis of Growth Assay Results</h2>
+<p>Our final graphs (<a href="#fig-wt1-37" class="quarto-xref">Figure&nbsp;16</a> through <a href="#fig-wt4-30" class="quarto-xref">Figure&nbsp;23</a>) show the growth curves for M4, M5 and M6, compared against each of the wild types (WT1, WT3, WT4 assays were conducted by the other batches), as well as the blanks. The growth curves were calculated for both the permissive as well as restrictive temperatures (37°C and 30°C).</p>
+<section id="wt1-comparison" class="level3">
+<h3 class="anchored" data-anchor-id="wt1-comparison">WT1 Comparison</h3>
+<p>At 37°C (<a href="#fig-wt1-37" class="quarto-xref">Figure&nbsp;16</a>), WT1 has a higher initial growth rate compared to all three mutants. However, M4 does overtake it at 270 minutes. At 30°C (<a href="#fig-wt1-30" class="quarto-xref">Figure&nbsp;17</a>), WT1 still has a higher initial growth rate, but all three mutants eventually catch up by 160 minutes. There is a great difference in the maximum OD600 values at 37°C and 30°C for WT1: The absorbance at 37°C is around 0.4, while at 30°C it is around 0.27 (once the curve begins to flatten). This could be because 30°C is not the optimal temperature for WT1, leading to a lesser growth density, despite being a part of its growth range.</p>
+</section>
+<section id="wt2-comparison" class="level3">
+<h3 class="anchored" data-anchor-id="wt2-comparison">WT2 Comparison</h3>
+<p>At 37°C (<a href="#fig-wt2-37" class="quarto-xref">Figure&nbsp;18</a>), the initial growth rates of WT2 and all three mutants seem to be similar. In fact, M5 is slightly faster initially, although WT2 soon overtakes it, and it plateaus below WT2. M4 however soon overtakes WT2 and eventually begins to plateau at a higher OD600 value than WT2. At 30°C (<a href="#fig-wt2-30" class="quarto-xref">Figure&nbsp;19</a>), M5 has the highest initial growth rate, although it does show a lot of standard deviation. It is followed by WT2, and then the rest of the mutants. M5 growth rate does slow down however around 150 minutes, all the mutants and wild type plateau at the same rate and absorbance. There is a also a similar difference in the maximum absorbance as well between the 37°C WT2 and the 30°C WT2 (similar to WT1).</p>
+</section>
+<section id="wt3-comparison" class="level3">
+<h3 class="anchored" data-anchor-id="wt3-comparison">WT3 Comparison</h3>
+<p>The graphs at both 37°C (<a href="#fig-wt3-37" class="quarto-xref">Figure&nbsp;20</a>) and 30°C (<a href="#fig-wt3-30" class="quarto-xref">Figure&nbsp;21</a>) are exactly the same as those of WT2, although WT3 does perform better at 37°C compared to WT2.</p>
+</section>
+<section id="wt4-comparison" class="level3">
+<h3 class="anchored" data-anchor-id="wt4-comparison">WT4 Comparison</h3>
+<p>WT4 seems to be somewhat of an anomaly. At 37°C (<a href="#fig-wt4-37" class="quarto-xref">Figure&nbsp;22</a>) it has the fastest initial growth, however M4 overtakes it at 150 minutes. At 30°C (<a href="#fig-wt4-30" class="quarto-xref">Figure&nbsp;23</a>), WT4 has almost the same growth rate as it did in 37°C. However, after 180 minutes, WT4 has a lot of variation and extremely high standard deviation. Upon rechecking the raw data, one of the replicates has an extremely high absorbance value consistently, very different from the other two replicates. This could be due to loading or instrument error.</p>
+</section>
+</section>
+<section id="qualitative-growth-assay" class="level2">
+<h2 class="anchored" data-anchor-id="qualitative-growth-assay">Qualitative Growth Assay</h2>
+<p>In the qualitative assay, at 37°C, there was visible growth in all wells; both wild types and mutants. The amount of growth decreased with inoculation concentration. At 30°C, there was visible growth only in the <span class="math inline">\(10^{-3}\)</span> wells of the wild types and mutants. This is probably because the initial concentrations in the remainder of the wells was not enough at a non optimum temperature.</p>
+</section>
+<section id="motility-assay-1" class="level2">
+<h2 class="anchored" data-anchor-id="motility-assay-1">Motility Assay</h2>
+<p>We did not see any halos forming in any of the plates, which is why we could not carry out a quantitative analysis. This could indicate that the bacteria were not motile. However, this is probably due to some experimental error.</p>
+</section>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>This was not a complete forward genetics experiment, since we only identified the phenotypes. The next step would be to carry out experiments to confirm the responsible genes.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
