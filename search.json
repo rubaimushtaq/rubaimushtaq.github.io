@@ -60,7 +60,7 @@
     "href": "projects/forward-genetic/artifacts/tables/tbl_week3_summary_37.html",
     "title": "Rubai Mushtaq",
     "section": "",
-    "text": "Strain\nMean OD600\nStd Dev"
+    "text": "Strain\nMean OD600\nStd Dev\n\n\n\n\nWT1\n0.41\n0.01\n\n\nWT2\n0.38\n0.02\n\n\nWT3\n0.41\n0.01\n\n\nWT4\n0.39\n0.04\n\n\nMutant 4\n0.41\n0.01\n\n\nMutant 5\n0.36\n0.05\n\n\nMutant 6\n0.38\n0.02\n\n\nBlank\n0.00\n0.00"
   },
   {
     "objectID": "projects/forward-genetic/artifacts/tables/tbl_batch2_counts.html",
@@ -102,7 +102,7 @@
     "href": "projects/forward-genetic/artifacts/tables/tbl_week3_summary_30.html",
     "title": "Rubai Mushtaq",
     "section": "",
-    "text": "Strain\nMean OD600\nStd Dev"
+    "text": "Strain\nMean OD600\nStd Dev\n\n\n\n\nWT1\n0.27\n0.00\n\n\nWT2\n0.27\n0.01\n\n\nWT3\n0.26\n0.02\n\n\nWT4\n0.38\n0.19\n\n\nMutant 4\n0.27\n0.00\n\n\nMutant 5\n0.26\n0.01\n\n\nMutant 6\n0.28\n0.01\n\n\nBlank\n0.00\n0.00"
   },
   {
     "objectID": "projects/forward-genetic/artifacts/tables/tbl_batch4_counts.html",
@@ -165,7 +165,7 @@
     "href": "projects/forward-genetic/report.html#week-3",
     "title": "Lab 3: Forward Genetics",
     "section": "Week 3",
-    "text": "Week 3\nA quantitative analysis of the growth of E. coli wild types and mutants was performed, at two different temperatures (30°C and 37°C).\nThe growth assay data was processed. The standard deviation (\\(s\\)) for each strain was calculated using the raw replicate values to provide error bars for the growth curves:\n\\[s = \\sqrt{\\frac{\\sum_{i=1}^{n} (x_i - \\bar{x})^2}{n - 1}}\\]\nwhere \\(x_i\\) represents the value of each replicate, \\(\\bar{x}\\) is the mean of the replicates, and \\(n\\) is the number of replicates.\n\nSummary Tables\n\n\n\nTable 5: Summary of OD600 values and standard deviations for WT and Mutants at 37°C (at 350 minutes).\n\n\n\n\n\nStrain\nMean OD600\nStd Dev\n\n\n\n\n\n\n\n\n\n\n\nTable 6: Summary of OD600 values and standard deviations for WT and Mutants at 30°C (at 350 minutes).\n\n\n\n\n\nStrain\nMean OD600\nStd Dev\n\n\n\n\n\n\n\n\n\n\nComparative Growth Curves\n\n\n\n\n\n\nFigure 16: WT 1 vs Mutants (37°C).\n\n\n\n\n\n\n\n\n\nFigure 17: WT 1 vs Mutants (30°C).\n\n\n\n\n\n\n\n\n\nFigure 18: WT 2 vs Mutants (37°C).\n\n\n\n\n\n\n\n\n\nFigure 19: WT 2 vs Mutants (30°C).\n\n\n\n\n\n\n\n\n\nFigure 20: WT 3 vs Mutants (37°C).\n\n\n\n\n\n\n\n\n\nFigure 21: WT 3 vs Mutants (30°C).\n\n\n\n\n\n\n\n\n\nFigure 22: WT 4 vs Mutants (37°C).\n\n\n\n\n\n\n\n\n\nFigure 23: WT 4 vs Mutants (30°C)."
+    "text": "Week 3\nA quantitative analysis of the growth of E. coli wild types and mutants was performed, at two different temperatures (30°C and 37°C).\nThe growth assay data was processed. The standard deviation (\\(s\\)) for each strain was calculated using the raw replicate values to provide error bars for the growth curves:\n\\[s = \\sqrt{\\frac{\\sum_{i=1}^{n} (x_i - \\bar{x})^2}{n - 1}}\\]\nwhere \\(x_i\\) represents the value of each replicate, \\(\\bar{x}\\) is the mean of the replicates, and \\(n\\) is the number of replicates.\n\nSummary Tables\n\n\n\nTable 5: Summary of OD600 values and standard deviations for WT and Mutants at 37°C (at 350 minutes).\n\n\n\n\n\nStrain\nMean OD600\nStd Dev\n\n\n\n\nWT1\n0.41\n0.01\n\n\nWT2\n0.38\n0.02\n\n\nWT3\n0.41\n0.01\n\n\nWT4\n0.39\n0.04\n\n\nMutant 4\n0.41\n0.01\n\n\nMutant 5\n0.36\n0.05\n\n\nMutant 6\n0.38\n0.02\n\n\nBlank\n0.00\n0.00\n\n\n\n\n\n\n\n\n\nTable 6: Summary of OD600 values and standard deviations for WT and Mutants at 30°C (at 350 minutes).\n\n\n\n\n\nStrain\nMean OD600\nStd Dev\n\n\n\n\nWT1\n0.27\n0.00\n\n\nWT2\n0.27\n0.01\n\n\nWT3\n0.26\n0.02\n\n\nWT4\n0.38\n0.19\n\n\nMutant 4\n0.27\n0.00\n\n\nMutant 5\n0.26\n0.01\n\n\nMutant 6\n0.28\n0.01\n\n\nBlank\n0.00\n0.00\n\n\n\n\n\n\n\n\nComparative Growth Curves\n\n\n\n\n\n\nFigure 16: WT 1 vs Mutants (37°C).\n\n\n\n\n\n\n\n\n\nFigure 17: WT 1 vs Mutants (30°C).\n\n\n\n\n\n\n\n\n\nFigure 18: WT 2 vs Mutants (37°C).\n\n\n\n\n\n\n\n\n\nFigure 19: WT 2 vs Mutants (30°C).\n\n\n\n\n\n\n\n\n\nFigure 20: WT 3 vs Mutants (37°C).\n\n\n\n\n\n\n\n\n\nFigure 21: WT 3 vs Mutants (30°C).\n\n\n\n\n\n\n\n\n\nFigure 22: WT 4 vs Mutants (37°C).\n\n\n\n\n\n\n\n\n\nFigure 23: WT 4 vs Mutants (30°C)."
   },
   {
     "objectID": "projects/forward-genetic/report.html#week-4",
