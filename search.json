@@ -42,67 +42,123 @@
     "text": "Awards\n\nWg Cdr Suhas Clement Solomon Award for Extraordinary Achievement: Awarded in December 2019 at Vidya Valley School. Every year, this award is given by Vidya Valley School to one student for an all round extraordinary performance. The trophy bears the inscription: “To always aim for the stars with grit, determination and, above all, with a sense of humour.” I am the first girl in the school’s history to have received this prestigious award, and becoming a role model for young girls means a lot to me.\nHead Girl: June 2021 - May 2022, Vidya Valley School.\nNational Silver Medal, Taekwondo: August 2019, Gujarat, India.\nBlack Belt, Taekwondo: April 2019, Fighters Taekwondo Academy."
   },
   {
-    "objectID": "projects/diffusion-coefficient/msd_wasm/CLAUDE.html",
-    "href": "projects/diffusion-coefficient/msd_wasm/CLAUDE.html",
-    "title": "Marimo notebook assistant",
+    "objectID": "projects/c-elegans-infection/report.html",
+    "href": "projects/c-elegans-infection/report.html",
+    "title": "Lab 3: Deformities in C. elegans intestine due to Infection",
     "section": "",
-    "text": "I am a specialized AI assistant designed to help create data science notebooks using marimo. I focus on creating clear, efficient, and reproducible data analysis workflows with marimo’s reactive programming model.\nIf you make edits to the notebook, only edit the contents inside the function decorator with @app.cell. marimo will automatically handle adding the parameters and return statement of the function. For example, for each edit, just return:\n@app.cell\ndef _():\n    &lt;your code here&gt;\n    return\n\n\nMarimo is a reactive notebook that differs from traditional notebooks in key ways:\n\nCells execute automatically when their dependencies change\nVariables cannot be redeclared across cells\nThe notebook forms a directed acyclic graph (DAG)\nThe last expression in a cell is automatically displayed\nUI elements are reactive and update the notebook automatically\n\n\n\n\n\nAll code must be complete and runnable\nFollow consistent coding style throughout\nInclude descriptive variable names and helpful comments\nImport all modules in the first cell, always including import marimo as mo\nNever redeclare variables across cells\nEnsure no cycles in notebook dependency graph\nThe last expression in a cell is automatically displayed, just like in Jupyter notebooks.\nDon’t include comments in markdown cells\nDon’t include comments in SQL cells\nNever define anything using global.\n\n\n\n\nMarimo’s reactivity means:\n\nWhen a variable changes, all cells that use that variable automatically re-execute\nUI elements trigger updates when their values change without explicit callbacks\nUI element values are accessed through .value attribute\nYou cannot access a UI element’s value in the same cell where it’s defined\nCells prefixed with an underscore (e.g. _my_var) are local to the cell and cannot be accessed by other cells\n\n\n\n\n\n\nUse polars for data manipulation\nImplement proper data validation\nHandle missing values appropriately\nUse efficient data structures\nA variable in the last expression of a cell is automatically displayed as a table \n\n - For matplotlib: use plt.gca() as the last expression instead of plt.show() - For plotly: return the figure object directly - For altair: return the chart object directly. Add tooltips where appropriate. You can pass polars dataframes directly to altair. - Include proper labels, titles, and color schemes - Make visualizations interactive where appropriate \n\n\nAccess UI element values with .value attribute (e.g., slider.value)\nCreate UI elements in one cell and reference them in later cells\nCreate intuitive layouts with mo.hstack(), mo.vstack(), and mo.tabs()\nPrefer reactive updates over callbacks (marimo handles reactivity automatically)\nGroup related UI elements for better organization \n\n - When writing duckdb, prefer using marimo’s SQL cells, which start with df = mo.sql(f”““”““) for DuckDB, or df = mo.sql(f”““”““, engine=engine) for other SQL engines. - See the SQL with duckdb example for an example on how to do this - Don’t add comments in cells that use mo.sql() \n\n\n\nCommon issues and solutions:\n\nCircular dependencies: Reorganize code to remove cycles in the dependency graph\nUI element value access: Move access to a separate cell from definition\nVisualization not showing: Ensure the visualization object is the last expression\n\nAfter generating a notebook, run marimo check --fix to catch and automatically resolve common formatting issues, and detect common pitfalls.\n\n\n\n\nmo.ui.altair_chart(altair_chart)\nmo.ui.button(value=None, kind='primary')\nmo.ui.run_button(label=None, tooltip=None, kind='primary')\nmo.ui.checkbox(label='', value=False)\nmo.ui.date(value=None, label=None, full_width=False)\nmo.ui.dropdown(options, value=None, label=None, full_width=False)\nmo.ui.file(label='', multiple=False, full_width=False)\nmo.ui.number(value=None, label=None, full_width=False)\nmo.ui.radio(options, value=None, label=None, full_width=False)\nmo.ui.refresh(options: List[str], default_interval: str)\nmo.ui.slider(start, stop, value=None, label=None, full_width=False, step=None)\nmo.ui.range_slider(start, stop, value=None, label=None, full_width=False, step=None)\nmo.ui.table(data, columns=None, on_select=None, sortable=True, filterable=True)\nmo.ui.text(value='', label=None, full_width=False)\nmo.ui.text_area(value='', label=None, full_width=False)\nmo.ui.data_explorer(df)\nmo.ui.dataframe(df)\nmo.ui.plotly(plotly_figure)\nmo.ui.tabs(elements: dict[str, mo.ui.Element])\nmo.ui.array(elements: list[mo.ui.Element])\nmo.ui.form(element: mo.ui.Element, label='', bordered=True)\n\n\n\n\n\nmo.md(text) - display markdown\nmo.stop(predicate, output=None) - stop execution conditionally\nmo.output.append(value) - append to the output when it is not the last expression\nmo.output.replace(value) - replace the output when it is not the last expression\nmo.Html(html) - display HTML\nmo.image(image) - display an image\nmo.hstack(elements) - stack elements horizontally\nmo.vstack(elements) - stack elements vertically\nmo.tabs(elements) - create a tabbed interface\n\n\n\n\n\n@app.cell\ndef _():\n    mo.md(\"\"\"\n    # Hello world\n    This is a _markdown_ **cell**.\n    \"\"\")\n    return\n\n\n@app.cell\ndef _():\n    import marimo as mo\n    import altair as alt\n    import polars as pl\n    import numpy as np\n    return\n\n@app.cell\ndef _():\n    n_points = mo.ui.slider(10, 100, value=50, label=\"Number of points\")\n    n_points\n    return\n\n@app.cell\ndef _():\n    x = np.random.rand(n_points.value)\n    y = np.random.rand(n_points.value)\n\n    df = pl.DataFrame({\"x\": x, \"y\": y})\n\n    chart = alt.Chart(df).mark_circle(opacity=0.7).encode(\n        x=alt.X('x', title='X axis'),\n        y=alt.Y('y', title='Y axis')\n    ).properties(\n        title=f\"Scatter plot with {n_points.value} points\",\n        width=400,\n        height=300\n    )\n\n    chart\n    return\n\n\n\n\n@app.cell\ndef _():\n    import marimo as mo\n    import polars as pl\n    from vega_datasets import data\n    return\n\n@app.cell\ndef _():\n    cars_df = pl.DataFrame(data.cars())\n    mo.ui.data_explorer(cars_df)\n    return\n\n\n\n\n@app.cell\ndef _():\n    import marimo as mo\n    import polars as pl\n    import altair as alt\n    return\n\n@app.cell\ndef _():\n    iris = pl.read_csv(\"hf://datasets/scikit-learn/iris/Iris.csv\")\n    return\n\n@app.cell\ndef _():\n    species_selector = mo.ui.dropdown(\n        options=[\"All\"] + iris[\"Species\"].unique().to_list(),\n        value=\"All\",\n        label=\"Species\",\n    )\n    x_feature = mo.ui.dropdown(\n        options=iris.select(pl.col(pl.Float64, pl.Int64)).columns,\n        value=\"SepalLengthCm\",\n        label=\"X Feature\",\n    )\n    y_feature = mo.ui.dropdown(\n        options=iris.select(pl.col(pl.Float64, pl.Int64)).columns,\n        value=\"SepalWidthCm\",\n        label=\"Y Feature\",\n    )\n    mo.hstack([species_selector, x_feature, y_feature])\n    return\n\n@app.cell\ndef _():\n    filtered_data = iris if species_selector.value == \"All\" else iris.filter(pl.col(\"Species\") == species_selector.value)\n\n    chart = alt.Chart(filtered_data).mark_circle().encode(\n        x=alt.X(x_feature.value, title=x_feature.value),\n        y=alt.Y(y_feature.value, title=y_feature.value),\n        color='Species'\n    ).properties(\n        title=f\"{y_feature.value} vs {x_feature.value}\",\n        width=500,\n        height=400\n    )\n\n    chart\n    return\n\n\n\n\n@app.cell\ndef _():\n    mo.stop(not data.value, mo.md(\"No data to display\"))\n\n    if mode.value == \"scatter\":\n        mo.output.replace(render_scatter(data.value))\n    else:\n        mo.output.replace(render_bar_chart(data.value))\n    return\n\n\n\n\n@app.cell\ndef _():\n    import marimo as mo\n    import altair as alt\n    import polars as pl\n    return\n\n@app.cell\ndef _():\n    # Load dataset\n    weather = pl.read_csv(\"&lt;https://raw.githubusercontent.com/vega/vega-datasets/refs/heads/main/data/weather.csv&gt;\")\n    weather_dates = weather.with_columns(\n        pl.col(\"date\").str.strptime(pl.Date, format=\"%Y-%m-%d\")\n    )\n    _chart = (\n        alt.Chart(weather_dates)\n        .mark_point()\n        .encode(\n            x=\"date:T\",\n            y=\"temp_max\",\n            color=\"location\",\n        )\n    )\n    return\n\n@app.cell\ndef _():\n    chart = mo.ui.altair_chart(_chart)\nchart\n    return\n\n@app.cell\ndef _():\n    # Display the selection\n    chart.value\n    return\n\n\n\n\n@app.cell\ndef _():\n    import marimo as mo\n    return\n\n@app.cell\ndef _():\n    first_button = mo.ui.run_button(label=\"Option 1\")\n    second_button = mo.ui.run_button(label=\"Option 2\")\n    [first_button, second_button]\n    return\n\n@app.cell\ndef _():\n    if first_button.value:\n        print(\"You chose option 1!\")\n    elif second_button.value:\n        print(\"You chose option 2!\")\n    else:\n        print(\"Click a button!\")\n    return\n\n\n\n\n@app.cell\ndef _():\n    import marimo as mo\n    import polars as pl\n    return\n\n@app.cell\ndef _():\n    weather = pl.read_csv('&lt;https://raw.githubusercontent.com/vega/vega-datasets/refs/heads/main/data/weather.csv&gt;')\n    return\n\n@app.cell\ndef _():\n    seattle_weather_df = mo.sql(\n        f\"\"\"\n        SELECT * FROM weather WHERE location = 'Seattle';\n        \"\"\"\n    )\n    return"
+    "text": "The aim of this experiment was to study the effect of bacterial infection on the morphology of C. elegans intestine. We used two different species of bacteria, Escherichia coli (strain OP50) and Pseudomonas aeruginosa (strain PA14). OP50 was the control, since it is the standard laboratory food for C. elegans. PA14 is known to be pathogenic to C. elegans. We infected L4 worms orally and observed the changes in their intestine after imaging with a confocal microscope. We also performed a quantitative analysis of the intestinal morphology by calculating a deformation index for the intestine."
   },
   {
-    "objectID": "projects/diffusion-coefficient/msd_wasm/CLAUDE.html#marimo-fundamentals",
-    "href": "projects/diffusion-coefficient/msd_wasm/CLAUDE.html#marimo-fundamentals",
-    "title": "Marimo notebook assistant",
-    "section": "",
-    "text": "Marimo is a reactive notebook that differs from traditional notebooks in key ways:\n\nCells execute automatically when their dependencies change\nVariables cannot be redeclared across cells\nThe notebook forms a directed acyclic graph (DAG)\nThe last expression in a cell is automatically displayed\nUI elements are reactive and update the notebook automatically"
+    "objectID": "projects/c-elegans-infection/report.html#materials",
+    "href": "projects/c-elegans-infection/report.html#materials",
+    "title": "Lab 3: Deformities in C. elegans intestine due to Infection",
+    "section": "Materials",
+    "text": "Materials\n\nC. elegans master plate\n2 transfer plates with only agar\n3 E. coli plates (GFP tagged)\n3 P. aeruginosa plates (GFP tagged)\nTwo eyelash picks\nA dissecting microscope\n3% agar\nLevamisole\nGlass slides\nA confocal microscope"
   },
   {
-    "objectID": "projects/diffusion-coefficient/msd_wasm/CLAUDE.html#code-requirements",
-    "href": "projects/diffusion-coefficient/msd_wasm/CLAUDE.html#code-requirements",
-    "title": "Marimo notebook assistant",
-    "section": "",
-    "text": "All code must be complete and runnable\nFollow consistent coding style throughout\nInclude descriptive variable names and helpful comments\nImport all modules in the first cell, always including import marimo as mo\nNever redeclare variables across cells\nEnsure no cycles in notebook dependency graph\nThe last expression in a cell is automatically displayed, just like in Jupyter notebooks.\nDon’t include comments in markdown cells\nDon’t include comments in SQL cells\nNever define anything using global."
+    "objectID": "projects/c-elegans-infection/report.html#methods",
+    "href": "projects/c-elegans-infection/report.html#methods",
+    "title": "Lab 3: Deformities in C. elegans intestine due to Infection",
+    "section": "Methods",
+    "text": "Methods\n\nWorm Picking\nUsing a master plate, we gently picked around 80 L4 worms using an eyelash pick and transferred them to a plain agar plate; 40 worms per plate. We left the worms on the plate for 20-30 minutes, so that the bacteria coating their body would be removed when they moved in the agar. The L4 worms were identifiable by a vulval opening. A dissection microscope was used to pick the worms.\n\n\nInfection\nWe then transferred the worms to the experimental plates. For the control group, we transferred worms to three E. coli plates, 10 worms each. For the experimental group, we transferred worms to three P. aeruginosa plates, 10 worms each. We left the worms on the plates for 48 hours.\n\n\nImaging\nThe worm intestines had been tagged with mCherry, and both bacteria were tagged with GFP. On a glass slide, we dropped some 3% agar, to create a gel pad for the worms. The worms were anesthetized using levomisole, and a coverslip was placed on top. We imaged the worms using a confocal microscope, and captured the images at a 40X magnification."
   },
   {
-    "objectID": "projects/diffusion-coefficient/msd_wasm/CLAUDE.html#reactivity",
-    "href": "projects/diffusion-coefficient/msd_wasm/CLAUDE.html#reactivity",
-    "title": "Marimo notebook assistant",
-    "section": "",
-    "text": "Marimo’s reactivity means:\n\nWhen a variable changes, all cells that use that variable automatically re-execute\nUI elements trigger updates when their values change without explicit callbacks\nUI element values are accessed through .value attribute\nYou cannot access a UI element’s value in the same cell where it’s defined\nCells prefixed with an underscore (e.g. _my_var) are local to the cell and cannot be accessed by other cells"
+    "objectID": "projects/c-elegans-infection/report.html#deformation-index",
+    "href": "projects/c-elegans-infection/report.html#deformation-index",
+    "title": "Lab 3: Deformities in C. elegans intestine due to Infection",
+    "section": "Deformation Index",
+    "text": "Deformation Index\nTo quantify the degree to which the worm had been affected, we defined a “deformation index”. This was calculated by taking the ratio of the length of the intestine to the length of the worm. In case of no or minimal deformation, the worm length should be approximately equal to the length of the intestine, giving a ratio of around 1. In case of high deformation, the length of the intestine will be much longer than the length of the worm, resulting in a ratio significantly greater than 1."
   },
   {
-    "objectID": "projects/diffusion-coefficient/msd_wasm/CLAUDE.html#best-practices",
-    "href": "projects/diffusion-coefficient/msd_wasm/CLAUDE.html#best-practices",
-    "title": "Marimo notebook assistant",
-    "section": "",
-    "text": "Use polars for data manipulation\nImplement proper data validation\nHandle missing values appropriately\nUse efficient data structures\nA variable in the last expression of a cell is automatically displayed as a table \n\n - For matplotlib: use plt.gca() as the last expression instead of plt.show() - For plotly: return the figure object directly - For altair: return the chart object directly. Add tooltips where appropriate. You can pass polars dataframes directly to altair. - Include proper labels, titles, and color schemes - Make visualizations interactive where appropriate \n\n\nAccess UI element values with .value attribute (e.g., slider.value)\nCreate UI elements in one cell and reference them in later cells\nCreate intuitive layouts with mo.hstack(), mo.vstack(), and mo.tabs()\nPrefer reactive updates over callbacks (marimo handles reactivity automatically)\nGroup related UI elements for better organization \n\n - When writing duckdb, prefer using marimo’s SQL cells, which start with df = mo.sql(f”““”““) for DuckDB, or df = mo.sql(f”““”““, engine=engine) for other SQL engines. - See the SQL with duckdb example for an example on how to do this - Don’t add comments in cells that use mo.sql()"
+    "objectID": "projects/c-elegans-infection/report.html#analysis",
+    "href": "projects/c-elegans-infection/report.html#analysis",
+    "title": "Lab 3: Deformities in C. elegans intestine due to Infection",
+    "section": "Analysis",
+    "text": "Analysis\nThe images were analyzed using Fiji. We used the segmented line tool to trace the length of the intestine and the worm, and then obtained the length in pixels using the measure command. Three sections of each worm had been imaged. The DI (deformation index) for each section was calculated, for the top and bottom respectively. This resulted in 6 DI values per worm. The average DI for each worm was then calculated, and is shown in the table below. Our sample size was 3 worms per bacterial exposure.\n\n\n\nTable 1: Average Deformation Index per worm.\n\n\n\n\n\nBacteria\nAverage DI\n\n\n\n\nOP50\n1.0979\n\n\nOP50\n1.1424\n\n\nOP50\n1.1507\n\n\nPA14\n1.0865\n\n\nPA14\n1.5180\n\n\nPA14\n1.5740"
   },
   {
-    "objectID": "projects/diffusion-coefficient/msd_wasm/CLAUDE.html#troubleshooting",
-    "href": "projects/diffusion-coefficient/msd_wasm/CLAUDE.html#troubleshooting",
-    "title": "Marimo notebook assistant",
-    "section": "",
-    "text": "Common issues and solutions:\n\nCircular dependencies: Reorganize code to remove cycles in the dependency graph\nUI element value access: Move access to a separate cell from definition\nVisualization not showing: Ensure the visualization object is the last expression\n\nAfter generating a notebook, run marimo check --fix to catch and automatically resolve common formatting issues, and detect common pitfalls."
+    "objectID": "projects/c-elegans-infection/report.html#graph",
+    "href": "projects/c-elegans-infection/report.html#graph",
+    "title": "Lab 3: Deformities in C. elegans intestine due to Infection",
+    "section": "Graph",
+    "text": "Graph\n\n\n\n\n\n\nFigure 3: Average DI of C. elegans vs. bacteria type. Individual replicates shown in blue; green points and error bars represent the mean ± standard deviation.\n\n\n\nFigure 3 shows the deformation indices of the worms. There are four values on the graph per infection: three of them denote the separate average DIs, and the green coordinate indicates the mean of the three average DIs per worm, with standard deviation error bars."
   },
   {
-    "objectID": "projects/diffusion-coefficient/msd_wasm/CLAUDE.html#available-ui-elements",
-    "href": "projects/diffusion-coefficient/msd_wasm/CLAUDE.html#available-ui-elements",
-    "title": "Marimo notebook assistant",
-    "section": "",
-    "text": "mo.ui.altair_chart(altair_chart)\nmo.ui.button(value=None, kind='primary')\nmo.ui.run_button(label=None, tooltip=None, kind='primary')\nmo.ui.checkbox(label='', value=False)\nmo.ui.date(value=None, label=None, full_width=False)\nmo.ui.dropdown(options, value=None, label=None, full_width=False)\nmo.ui.file(label='', multiple=False, full_width=False)\nmo.ui.number(value=None, label=None, full_width=False)\nmo.ui.radio(options, value=None, label=None, full_width=False)\nmo.ui.refresh(options: List[str], default_interval: str)\nmo.ui.slider(start, stop, value=None, label=None, full_width=False, step=None)\nmo.ui.range_slider(start, stop, value=None, label=None, full_width=False, step=None)\nmo.ui.table(data, columns=None, on_select=None, sortable=True, filterable=True)\nmo.ui.text(value='', label=None, full_width=False)\nmo.ui.text_area(value='', label=None, full_width=False)\nmo.ui.data_explorer(df)\nmo.ui.dataframe(df)\nmo.ui.plotly(plotly_figure)\nmo.ui.tabs(elements: dict[str, mo.ui.Element])\nmo.ui.array(elements: list[mo.ui.Element])\nmo.ui.form(element: mo.ui.Element, label='', bordered=True)"
+    "objectID": "projects/c-elegans-infection/report.html#statistical-significance",
+    "href": "projects/c-elegans-infection/report.html#statistical-significance",
+    "title": "Lab 3: Deformities in C. elegans intestine due to Infection",
+    "section": "Statistical Significance",
+    "text": "Statistical Significance\nA one-tailed Welch’s t-test was performed to determine whether there was a significant difference between the PA14 and OP50 infections. This test was chosen since the standard deviations of the two samples were unequal.\n\\(H_0\\): There is no significant difference between the DIs of the intestines of the worms upon being fed the different bacteria.\n\\(H_1\\): DI of PA14 worms &gt; DI of OP50 worms\nSignificance Level: 0.05\n\\[\n\\mathit{t} = \\frac{\\bar{X}_1 - \\bar{X}_2}{\\sqrt{\\frac{s_1^2}{n_1} + \\frac{s_2^2}{n_2}}}\n\\]\nWhere \\(\\bar{X}_1\\) and \\(\\bar{X}_2\\) are the sample means, \\(s_1\\) and \\(s_2\\) are the sample standard deviations, and \\(n_1\\) and \\(n_2\\) are the sample sizes.\n\\[\n\\therefore \\, \\mathit{t} = \\frac{1.392838693 - 1.13033354}{\\sqrt{\\frac{0.2667850071^2}{3} + \\frac{0.02840530039^2}{3}}}\n\\]\n\\[\n\\mathit{t} = 1.694685906 \\approx 1.695\n\\]\nThe degrees of freedom for Welch’s t-test are calculated using the Welch-Satterthwaite equation:\n\\[\n\\nu = \\frac{\\left(\\frac{s_1^2}{n_1} + \\frac{s_2^2}{n_2}\\right)^2}{\\frac{\\left(\\frac{s_1^2}{n_1}\\right)^2}{n_1 - 1} + \\frac{\\left(\\frac{s_2^2}{n_2}\\right)^2}{n_2 - 1}}\n\\]\n\\[\n\\nu = \\frac{\\left(\\frac{0.2667850071^2}{3} + \\frac{0.02840530039^2}{3}\\right)^2}{\\frac{\\left(\\frac{0.2667850071^2}{3}\\right)^2}{2} + \\frac{\\left(\\frac{0.02840530039^2}{3}\\right)^2}{2}}\n\\]\n\\[\n\\nu = 2.045 \\approx 2\n\\]\nFrom the t-distribution table, the critical value for a one-tailed test with 2 degrees of freedom at a 0.05 significance level is 2.920.\ni.e. \\(P(T &gt; 2.920) = 0.05\\)\nHence, since \\(1.695 &lt; 2.920, P(T &gt; 1.695) &gt; P(T &gt; 2.920)\\)\nSo, \\(P(T &gt; 1.695) &gt; 0.05\\)\n\n\n\n\n\n\nFigure 4: t-distribution with 2 degrees of freedom, plotted in Desmos.\n\n\n\nSo, we don’t have enough evidence to reject the null hypothesis."
   },
   {
-    "objectID": "projects/diffusion-coefficient/msd_wasm/CLAUDE.html#layout-and-utility-functions",
-    "href": "projects/diffusion-coefficient/msd_wasm/CLAUDE.html#layout-and-utility-functions",
-    "title": "Marimo notebook assistant",
-    "section": "",
-    "text": "mo.md(text) - display markdown\nmo.stop(predicate, output=None) - stop execution conditionally\nmo.output.append(value) - append to the output when it is not the last expression\nmo.output.replace(value) - replace the output when it is not the last expression\nmo.Html(html) - display HTML\nmo.image(image) - display an image\nmo.hstack(elements) - stack elements horizontally\nmo.vstack(elements) - stack elements vertically\nmo.tabs(elements) - create a tabbed interface"
+    "objectID": "projects/c-elegans-infection/report.html#additional-notes",
+    "href": "projects/c-elegans-infection/report.html#additional-notes",
+    "title": "Lab 3: Deformities in C. elegans intestine due to Infection",
+    "section": "Additional Notes",
+    "text": "Additional Notes\nWe were able to obtain only 2 OP50 fed worms and 1 PA14 fed worm from our batch. A lot of our worms died, and we had also accidentally picked some adults which reproduced, leading to a lot of L1s and L2s on the plates. Because of this, we had to use a few images from other batches.\nIn some of the images, we could see that the ingested bacteria was outside the intestine, for both OP50 and PA14. Upon further reading, this is possibly due to different reasons in the two groups. Intestinal barrier dysfunction is a common feature of aging across organisms. So it is likely that the OP50 worms with bacteria outside the intestine were simply old. In the PA14 worms, this was likely due to the infection itself, as PA14 is a pathogenic bacteria that can cause damage to the intestinal lining. (References linked below)"
   },
   {
-    "objectID": "projects/diffusion-coefficient/msd_wasm/CLAUDE.html#examples",
-    "href": "projects/diffusion-coefficient/msd_wasm/CLAUDE.html#examples",
-    "title": "Marimo notebook assistant",
+    "objectID": "projects/forward-genetic/artifacts/tables/tbl_ecoli_counts.html",
+    "href": "projects/forward-genetic/artifacts/tables/tbl_ecoli_counts.html",
+    "title": "Rubai Mushtaq",
     "section": "",
-    "text": "@app.cell\ndef _():\n    mo.md(\"\"\"\n    # Hello world\n    This is a _markdown_ **cell**.\n    \"\"\")\n    return\n\n\n@app.cell\ndef _():\n    import marimo as mo\n    import altair as alt\n    import polars as pl\n    import numpy as np\n    return\n\n@app.cell\ndef _():\n    n_points = mo.ui.slider(10, 100, value=50, label=\"Number of points\")\n    n_points\n    return\n\n@app.cell\ndef _():\n    x = np.random.rand(n_points.value)\n    y = np.random.rand(n_points.value)\n\n    df = pl.DataFrame({\"x\": x, \"y\": y})\n\n    chart = alt.Chart(df).mark_circle(opacity=0.7).encode(\n        x=alt.X('x', title='X axis'),\n        y=alt.Y('y', title='Y axis')\n    ).properties(\n        title=f\"Scatter plot with {n_points.value} points\",\n        width=400,\n        height=300\n    )\n\n    chart\n    return\n\n\n\n\n@app.cell\ndef _():\n    import marimo as mo\n    import polars as pl\n    from vega_datasets import data\n    return\n\n@app.cell\ndef _():\n    cars_df = pl.DataFrame(data.cars())\n    mo.ui.data_explorer(cars_df)\n    return\n\n\n\n\n@app.cell\ndef _():\n    import marimo as mo\n    import polars as pl\n    import altair as alt\n    return\n\n@app.cell\ndef _():\n    iris = pl.read_csv(\"hf://datasets/scikit-learn/iris/Iris.csv\")\n    return\n\n@app.cell\ndef _():\n    species_selector = mo.ui.dropdown(\n        options=[\"All\"] + iris[\"Species\"].unique().to_list(),\n        value=\"All\",\n        label=\"Species\",\n    )\n    x_feature = mo.ui.dropdown(\n        options=iris.select(pl.col(pl.Float64, pl.Int64)).columns,\n        value=\"SepalLengthCm\",\n        label=\"X Feature\",\n    )\n    y_feature = mo.ui.dropdown(\n        options=iris.select(pl.col(pl.Float64, pl.Int64)).columns,\n        value=\"SepalWidthCm\",\n        label=\"Y Feature\",\n    )\n    mo.hstack([species_selector, x_feature, y_feature])\n    return\n\n@app.cell\ndef _():\n    filtered_data = iris if species_selector.value == \"All\" else iris.filter(pl.col(\"Species\") == species_selector.value)\n\n    chart = alt.Chart(filtered_data).mark_circle().encode(\n        x=alt.X(x_feature.value, title=x_feature.value),\n        y=alt.Y(y_feature.value, title=y_feature.value),\n        color='Species'\n    ).properties(\n        title=f\"{y_feature.value} vs {x_feature.value}\",\n        width=500,\n        height=400\n    )\n\n    chart\n    return\n\n\n\n\n@app.cell\ndef _():\n    mo.stop(not data.value, mo.md(\"No data to display\"))\n\n    if mode.value == \"scatter\":\n        mo.output.replace(render_scatter(data.value))\n    else:\n        mo.output.replace(render_bar_chart(data.value))\n    return\n\n\n\n\n@app.cell\ndef _():\n    import marimo as mo\n    import altair as alt\n    import polars as pl\n    return\n\n@app.cell\ndef _():\n    # Load dataset\n    weather = pl.read_csv(\"&lt;https://raw.githubusercontent.com/vega/vega-datasets/refs/heads/main/data/weather.csv&gt;\")\n    weather_dates = weather.with_columns(\n        pl.col(\"date\").str.strptime(pl.Date, format=\"%Y-%m-%d\")\n    )\n    _chart = (\n        alt.Chart(weather_dates)\n        .mark_point()\n        .encode(\n            x=\"date:T\",\n            y=\"temp_max\",\n            color=\"location\",\n        )\n    )\n    return\n\n@app.cell\ndef _():\n    chart = mo.ui.altair_chart(_chart)\nchart\n    return\n\n@app.cell\ndef _():\n    # Display the selection\n    chart.value\n    return\n\n\n\n\n@app.cell\ndef _():\n    import marimo as mo\n    return\n\n@app.cell\ndef _():\n    first_button = mo.ui.run_button(label=\"Option 1\")\n    second_button = mo.ui.run_button(label=\"Option 2\")\n    [first_button, second_button]\n    return\n\n@app.cell\ndef _():\n    if first_button.value:\n        print(\"You chose option 1!\")\n    elif second_button.value:\n        print(\"You chose option 2!\")\n    else:\n        print(\"Click a button!\")\n    return\n\n\n\n\n@app.cell\ndef _():\n    import marimo as mo\n    import polars as pl\n    return\n\n@app.cell\ndef _():\n    weather = pl.read_csv('&lt;https://raw.githubusercontent.com/vega/vega-datasets/refs/heads/main/data/weather.csv&gt;')\n    return\n\n@app.cell\ndef _():\n    seattle_weather_df = mo.sql(\n        f\"\"\"\n        SELECT * FROM weather WHERE location = 'Seattle';\n        \"\"\"\n    )\n    return"
+    "text": "Exposure Time (s)\nAverage colony number\nSurvival (%)\n\n\n\n\n0.00\n206.40\n100.00\n\n\n2.00\n218.31\n105.77\n\n\n5.00\n126.06\n61.07\n\n\n10.00\n160.50\n77.76"
+  },
+  {
+    "objectID": "projects/forward-genetic/artifacts/tables/tbl_week3_summary_37.html",
+    "href": "projects/forward-genetic/artifacts/tables/tbl_week3_summary_37.html",
+    "title": "Rubai Mushtaq",
+    "section": "",
+    "text": "Strain\nMean OD600\nStd Dev\n\n\n\n\nWT1\n0.41\n0.01\n\n\nWT2\n0.38\n0.02\n\n\nWT3\n0.41\n0.01\n\n\nWT4\n0.39\n0.04\n\n\nMutant 4\n0.41\n0.01\n\n\nMutant 5\n0.36\n0.05\n\n\nMutant 6\n0.38\n0.02\n\n\nBlank\n0.00\n0.00"
+  },
+  {
+    "objectID": "projects/forward-genetic/artifacts/tables/tbl_batch2_counts.html",
+    "href": "projects/forward-genetic/artifacts/tables/tbl_batch2_counts.html",
+    "title": "Rubai Mushtaq",
+    "section": "",
+    "text": "Exposure Time (s)\nValue 1\nValue 2\nAverage colony number\nSurvival (%)\n\n\n\n\n0.00\n10.00\n12.00\n11.00\n100.00\n\n\n2.00\n36.00\n34.00\n35.00\n318.18\n\n\n5.00\n66.00\n69.00\n67.50\n613.64\n\n\n10.00\n47.00\n43.00\n45.00\n409.09"
+  },
+  {
+    "objectID": "projects/forward-genetic/artifacts/tables/tbl_batch1_ec_counts.html",
+    "href": "projects/forward-genetic/artifacts/tables/tbl_batch1_ec_counts.html",
+    "title": "Rubai Mushtaq",
+    "section": "",
+    "text": "Exposure Time (s)\nAverage colony number\nSurvival (%)\n\n\n\n\n0.00\n6.67\n100.00\n\n\n2.00\n23.17\n347.38\n\n\n5.00\n49.78\n746.33\n\n\n10.00\n32.67\n489.81"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Rubai Mushtaq",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
+    "objectID": "projects/forward-genetic/artifacts/tables/tbl_batch1_pa_counts.html",
+    "href": "projects/forward-genetic/artifacts/tables/tbl_batch1_pa_counts.html",
+    "title": "Rubai Mushtaq",
+    "section": "",
+    "text": "Exposure Time (s)\nAverage colony number\nSurvival (%)\n\n\n\n\n0.00\n212.50\n100.00\n\n\n2.00\n187.00\n88.00\n\n\n5.00\n226.50\n106.59\n\n\n10.00\n157.00\n73.88"
+  },
+  {
+    "objectID": "projects/forward-genetic/artifacts/tables/tbl_pa14_counts.html",
+    "href": "projects/forward-genetic/artifacts/tables/tbl_pa14_counts.html",
+    "title": "Rubai Mushtaq",
+    "section": "",
+    "text": "Exposure Time (s)\nAverage colony number\nSurvival (%)\n\n\n\n\n0.00\n152.50\n100.00\n\n\n2.00\n145.00\n95.08\n\n\n5.00\n135.90\n89.11\n\n\n10.00\n99.80\n65.44"
+  },
+  {
+    "objectID": "projects/forward-genetic/artifacts/tables/tbl_week3_summary_30.html",
+    "href": "projects/forward-genetic/artifacts/tables/tbl_week3_summary_30.html",
+    "title": "Rubai Mushtaq",
+    "section": "",
+    "text": "Strain\nMean OD600\nStd Dev\n\n\n\n\nWT1\n0.27\n0.00\n\n\nWT2\n0.27\n0.01\n\n\nWT3\n0.26\n0.02\n\n\nWT4\n0.38\n0.19\n\n\nMutant 4\n0.27\n0.00\n\n\nMutant 5\n0.26\n0.01\n\n\nMutant 6\n0.28\n0.01\n\n\nBlank\n0.00\n0.00"
+  },
+  {
+    "objectID": "projects/forward-genetic/artifacts/tables/tbl_batch4_counts.html",
+    "href": "projects/forward-genetic/artifacts/tables/tbl_batch4_counts.html",
+    "title": "Rubai Mushtaq",
+    "section": "",
+    "text": "Exposure Time (s)\nValue A\nValue B\nAverage colony number\nSurvival (%)\n\n\n\n\n0.00\n316.00\n264.00\n290.00\n100.00\n\n\n2.00\n196.00\n197.50\n196.75\n67.84\n\n\n5.00\n216.00\n168.00\n192.00\n66.21\n\n\n10.00\n108.00\n140.00\n124.00\n42.76"
   },
   {
     "objectID": "projects/forward-genetic/report.html",
@@ -203,67 +259,11 @@
     "text": "Motility Assay\nWe did not see any halos forming in any of the plates, which is why we could not carry out a quantitative analysis. This could indicate that the bacteria were not motile. However, this is probably due to some experimental error."
   },
   {
-    "objectID": "projects/forward-genetic/artifacts/tables/tbl_batch4_counts.html",
-    "href": "projects/forward-genetic/artifacts/tables/tbl_batch4_counts.html",
+    "objectID": "projects/c-elegans-infection/artifacts/tables/tbl_di_data.html",
+    "href": "projects/c-elegans-infection/artifacts/tables/tbl_di_data.html",
     "title": "Rubai Mushtaq",
     "section": "",
-    "text": "Exposure Time (s)\nValue A\nValue B\nAverage colony number\nSurvival (%)\n\n\n\n\n0.00\n316.00\n264.00\n290.00\n100.00\n\n\n2.00\n196.00\n197.50\n196.75\n67.84\n\n\n5.00\n216.00\n168.00\n192.00\n66.21\n\n\n10.00\n108.00\n140.00\n124.00\n42.76"
-  },
-  {
-    "objectID": "projects/forward-genetic/artifacts/tables/tbl_week3_summary_30.html",
-    "href": "projects/forward-genetic/artifacts/tables/tbl_week3_summary_30.html",
-    "title": "Rubai Mushtaq",
-    "section": "",
-    "text": "Strain\nMean OD600\nStd Dev\n\n\n\n\nWT1\n0.27\n0.00\n\n\nWT2\n0.27\n0.01\n\n\nWT3\n0.26\n0.02\n\n\nWT4\n0.38\n0.19\n\n\nMutant 4\n0.27\n0.00\n\n\nMutant 5\n0.26\n0.01\n\n\nMutant 6\n0.28\n0.01\n\n\nBlank\n0.00\n0.00"
-  },
-  {
-    "objectID": "projects/forward-genetic/artifacts/tables/tbl_pa14_counts.html",
-    "href": "projects/forward-genetic/artifacts/tables/tbl_pa14_counts.html",
-    "title": "Rubai Mushtaq",
-    "section": "",
-    "text": "Exposure Time (s)\nAverage colony number\nSurvival (%)\n\n\n\n\n0.00\n152.50\n100.00\n\n\n2.00\n145.00\n95.08\n\n\n5.00\n135.90\n89.11\n\n\n10.00\n99.80\n65.44"
-  },
-  {
-    "objectID": "projects/forward-genetic/artifacts/tables/tbl_batch1_pa_counts.html",
-    "href": "projects/forward-genetic/artifacts/tables/tbl_batch1_pa_counts.html",
-    "title": "Rubai Mushtaq",
-    "section": "",
-    "text": "Exposure Time (s)\nAverage colony number\nSurvival (%)\n\n\n\n\n0.00\n212.50\n100.00\n\n\n2.00\n187.00\n88.00\n\n\n5.00\n226.50\n106.59\n\n\n10.00\n157.00\n73.88"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Rubai Mushtaq",
-    "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
-  },
-  {
-    "objectID": "projects/forward-genetic/artifacts/tables/tbl_batch1_ec_counts.html",
-    "href": "projects/forward-genetic/artifacts/tables/tbl_batch1_ec_counts.html",
-    "title": "Rubai Mushtaq",
-    "section": "",
-    "text": "Exposure Time (s)\nAverage colony number\nSurvival (%)\n\n\n\n\n0.00\n6.67\n100.00\n\n\n2.00\n23.17\n347.38\n\n\n5.00\n49.78\n746.33\n\n\n10.00\n32.67\n489.81"
-  },
-  {
-    "objectID": "projects/forward-genetic/artifacts/tables/tbl_batch2_counts.html",
-    "href": "projects/forward-genetic/artifacts/tables/tbl_batch2_counts.html",
-    "title": "Rubai Mushtaq",
-    "section": "",
-    "text": "Exposure Time (s)\nValue 1\nValue 2\nAverage colony number\nSurvival (%)\n\n\n\n\n0.00\n10.00\n12.00\n11.00\n100.00\n\n\n2.00\n36.00\n34.00\n35.00\n318.18\n\n\n5.00\n66.00\n69.00\n67.50\n613.64\n\n\n10.00\n47.00\n43.00\n45.00\n409.09"
-  },
-  {
-    "objectID": "projects/forward-genetic/artifacts/tables/tbl_week3_summary_37.html",
-    "href": "projects/forward-genetic/artifacts/tables/tbl_week3_summary_37.html",
-    "title": "Rubai Mushtaq",
-    "section": "",
-    "text": "Strain\nMean OD600\nStd Dev\n\n\n\n\nWT1\n0.41\n0.01\n\n\nWT2\n0.38\n0.02\n\n\nWT3\n0.41\n0.01\n\n\nWT4\n0.39\n0.04\n\n\nMutant 4\n0.41\n0.01\n\n\nMutant 5\n0.36\n0.05\n\n\nMutant 6\n0.38\n0.02\n\n\nBlank\n0.00\n0.00"
-  },
-  {
-    "objectID": "projects/forward-genetic/artifacts/tables/tbl_ecoli_counts.html",
-    "href": "projects/forward-genetic/artifacts/tables/tbl_ecoli_counts.html",
-    "title": "Rubai Mushtaq",
-    "section": "",
-    "text": "Exposure Time (s)\nAverage colony number\nSurvival (%)\n\n\n\n\n0.00\n206.40\n100.00\n\n\n2.00\n218.31\n105.77\n\n\n5.00\n126.06\n61.07\n\n\n10.00\n160.50\n77.76"
+    "text": "Bacteria\nAverage DI\n\n\n\n\nOP50\n1.0979\n\n\nOP50\n1.1424\n\n\nOP50\n1.1507\n\n\nPA14\n1.0865\n\n\nPA14\n1.5180\n\n\nPA14\n1.5740"
   },
   {
     "objectID": "pages/about.html",
