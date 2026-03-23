@@ -46,21 +46,21 @@
     "href": "projects/c-elegans-infection/report.html",
     "title": "Lab 3: Deformities in C. elegans intestine due to Infection",
     "section": "",
-    "text": "The aim of this experiment was to study the effect of bacterial infection on the morphology of C. elegans intestine. We used two different species of bacteria, Escherichia coli (strain OP50) and Pseudomonas aeruginosa (strain PA14). OP50 was the control, since it is the standard laboratory food for C. elegans. PA14 is known to be pathogenic to C. elegans. We infected L4 worms orally and observed the changes in their intestine after imaging with a confocal microscope. We also performed a quantitative analysis of the intestinal morphology by calculating a deformation index for the intestine."
+    "text": "The aim of this experiment was to study the effect of bacterial infection on the morphology of C. elegans intestine. We used two different species of bacteria, Escherichia coli (strain OP50) and Pseudomonas aeruginosa (strain PA14). OP50 was the control, since it is the standard laboratory food for C. elegans. PA14 is known to be pathogenic to C. elegans. We infected L4 worms orally and observed the changes in their intestine after imaging with an epifluorescence microscope. We also performed a quantitative analysis of the intestinal morphology by calculating a deformation index for the intestine."
   },
   {
     "objectID": "projects/c-elegans-infection/report.html#materials",
     "href": "projects/c-elegans-infection/report.html#materials",
     "title": "Lab 3: Deformities in C. elegans intestine due to Infection",
     "section": "Materials",
-    "text": "Materials\n\nC. elegans master plate\n2 transfer plates with only agar\n3 E. coli plates (GFP tagged)\n3 P. aeruginosa plates (GFP tagged)\nTwo eyelash picks\nA dissecting microscope\n3% agar\nLevamisole\nGlass slides\nA confocal microscope"
+    "text": "Materials\n\nC. elegans master plate\n2 transfer plates with only agar\n3 E. coli plates (GFP tagged)\n3 P. aeruginosa plates (GFP tagged)\nTwo eyelash picks\nA dissecting microscope\n3% agar\nLevamisole\nGlass slides\nAn epifluorescence microscope"
   },
   {
     "objectID": "projects/c-elegans-infection/report.html#methods",
     "href": "projects/c-elegans-infection/report.html#methods",
     "title": "Lab 3: Deformities in C. elegans intestine due to Infection",
     "section": "Methods",
-    "text": "Methods\n\nWorm Picking\nUsing a master plate, we gently picked around 80 L4 worms using an eyelash pick and transferred them to a plain agar plate; 40 worms per plate. We left the worms on the plate for 20-30 minutes, so that the bacteria coating their body would be removed when they moved in the agar. The L4 worms were identifiable by a vulval opening. A dissection microscope was used to pick the worms.\n\n\nInfection\nWe then transferred the worms to the experimental plates. For the control group, we transferred worms to three E. coli plates, 10 worms each. For the experimental group, we transferred worms to three P. aeruginosa plates, 10 worms each. We left the worms on the plates for 48 hours.\n\n\nImaging\nThe worm intestines had been tagged with mCherry, and both bacteria were tagged with GFP. On a glass slide, we dropped some 3% agar, to create a gel pad for the worms. The worms were anesthetized using levomisole, and a coverslip was placed on top. We imaged the worms using a confocal microscope, and captured the images at a 40X magnification."
+    "text": "Methods\n\nWorm Picking\nUsing a master plate, we gently picked around 80 L4 worms using an eyelash pick and transferred them to a plain agar plate; 40 worms per plate. We left the worms on the plate for 20-30 minutes, so that the bacteria coating their body would be removed when they moved in the agar. The L4 worms were identifiable by a vulval opening. A dissection microscope was used to pick the worms.\n\n\nInfection\nWe then transferred the worms to the experimental plates. For the control group, we transferred worms to three E. coli plates, 10 worms each. For the experimental group, we transferred worms to three P. aeruginosa plates, 10 worms each. We left the worms on the plates for 48 hours.\n\n\nImaging\nThe worm intestines had been tagged with mCherry, and both bacteria were tagged with GFP. On a glass slide, we dropped some 3% agar, to create a gel pad for the worms. The worms were anesthetized using levomisole, and a coverslip was placed on top. We imaged the worms using an epifluorescence microscope, and captured the images at a 40X magnification."
   },
   {
     "objectID": "projects/c-elegans-infection/report.html#deformation-index",
