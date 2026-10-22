@@ -1,0 +1,122 @@
+| SEX | EYE COLOUR | BODY |
+| :---: | :---: | :---: |
+| F | W | B |
+| F | O | Y |
+| F | W | B |
+| F | W | B |
+| F | O | B |
+| F | W | B |
+| F | W | B |
+| F | W | Y |
+| F | O | Y |
+| F | W | B |
+| F | O | Y |
+| F | W | B |
+| F | O | Y |
+| F | O | Y |
+| F | W | B |
+| F | W | Y |
+| F | W | B |
+| F | O | Y |
+| F | O | Y |
+| F | W | B |
+| F | O | Y |
+| F | W | Y |
+| F | W | B |
+| F | W | B |
+| F | O | Y |
+| F | O | Y |
+| F | O | B |
+| F | W | B |
+| F | W | B |
+| F | O | Y |
+| F | O | Y |
+| F | O | Y |
+| F | W | B |
+| F | O | Y |
+| F | O | Y |
+| F | O | Y |
+| F | W | Y |
+| F | W | B |
+| F | W | B |
+| F | W | B |
+| F | W | B |
+| F | W | B |
+| F | O | B |
+| F | W | B |
+| F | O | Y |
+| F | W | B |
+| F | O | Y |
+| F | O | Y |
+| F | W | B |
+| F | O | Y |
+| F | O | Y |
+| F | O | Y |
+| F | O | Y |
+| F | O | B |
+| F | W | B |
+| F | O | B |
+| F | O | Y |
+| M | O | B |
+| M | O | Y |
+| M | W | B |
+| M | W | Y |
+| M | O | Y |
+| M | O | Y |
+| M | W | Y |
+| M | O | Y |
+| M | W | B |
+| M | W | B |
+| M | W | B |
+| M | W | Y |
+| M | W | Y |
+| M | W | B |
+| M | W | B |
+| M | W | Y |
+| M | W | B |
+| M | W | B |
+| M | W | B |
+| M | O | Y |
+| M | O | B |
+| M | W | B |
+| M | O | Y |
+| M | W | B |
+| M | O | Y |
+| M | O | Y |
+| M | O | B |
+| M | W | Y |
+| M | O | Y |
+| M | O | Y |
+| M | O | Y |
+| M | O | B |
+| M | O | Y |
+| M | W | B |
+| M | O | B |
+| M | W | B |
+| M | W | B |
+| M | O | Y |
+| M | O | Y |
+| M | W | Y |
+| M | W | B |
+| M | O | Y |
+| M | O | Y |
+| M | O | Y |
+| M | O | Y |
+| M | W | B |
+| M | W | B |
+| M | O | Y |
+| M | W | Y |
+| M | O | Y |
+| M | W | B |
+| M | O | Y |
+| M | O | Y |
+|  |  |  |
+|  |  |  |
+|  |  |  |
+|  |  |  |
+|  |  |  |
+|  |  |  |
+|  |  |  |
+|  |  |  |
+|  |  |  |
+|  |  |  |
